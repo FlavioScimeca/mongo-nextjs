@@ -6,16 +6,16 @@ import Card from '@/components/card';
 export default function PersonalNote() {
   const [notes, setNotes] = useState([]);
   const userDetail = useSelector(selectUser);
-  useEffect(() => {
-    getNotes();
-  }, []);
-
   const getNotes = async () => {
     const { _id } = userDetail;
     const getNotes = await axios.post('/api/note/getNote', { _id: _id });
     setNotes(getNotes.data.notes);
   };
-  console.log(notes);
+  useEffect(() => {
+    getNotes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // console.log(notes);
   return (
     <div className="grid grid-cols-2 gap-2 p-3 md:grid-cols-3">
       {notes.length > 0 &&
