@@ -12,9 +12,6 @@ export default function Home() {
   const userDetail = useSelector(selectUser);
 
   useEffect(() => {
-    const localUser = localStorage.getItem('user');
-    const parseUser = JSON.parse(localUser);
-    const { email } = parseUser;
     if (userDetail._id !== '') {
       console.log('utente settato');
       setUser(userDetail);
@@ -35,7 +32,7 @@ export default function Home() {
       };
     }
   }, [dispatch, userDetail]);
-  console.log(user);
+  // console.log(user);
   return (
     <div>
       <Header />
