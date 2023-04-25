@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '@/slices/userSlice';
 import axios from 'axios';
 import Card from '@/components/card';
+import Header from '@/components/header';
 export default function PersonalNote() {
   const [notes, setNotes] = useState([]);
   const userDetail = useSelector(selectUser);
@@ -17,9 +18,20 @@ export default function PersonalNote() {
   }, []);
   // console.log(notes);
   return (
-    <div className="grid grid-cols-2 gap-2 p-3 md:grid-cols-3">
-      {notes.length > 0 &&
-        notes.map((note, idx) => <Card key={idx} note={note} />)}
-    </div>
+    <>
+      <Header />
+
+      {notes.length > 0 ? (
+        <div className="grid grid-cols-2 gap-2 p-3 md:grid-cols-3">
+          {notes.map((note, idx) => (
+            <Card key={idx} note={note} />
+          ))}
+        </div>
+      ) : (
+        <div className=" text-center mt-10 font-semibold">
+          Nessuna nota/ loading..
+        </div>
+      )}
+    </>
   );
 }

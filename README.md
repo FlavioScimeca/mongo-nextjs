@@ -6,9 +6,9 @@
 - [x] Usare Redux come state management
 - [x] Poter aggiungere una Nota
 - [x] Poter eliminare una Nota
-- [ ] Creare una pagina dettaglio per ogni prodotto
+- [x] Creare una edit per ogni prodotto
 
 ## EXTRA
 
 - [ ] Usare Firebase per gli utenti
-- [ ] Deploy con Vercel
+- [x] Deploy con Vercel
