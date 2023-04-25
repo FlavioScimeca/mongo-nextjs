@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { Provider, useDispatch } from 'react-redux';
-import store from './store';
+import store from '../slices/store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
