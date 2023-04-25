@@ -1,27 +1,35 @@
-import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setUserLoginDetails } from '@/slices/userSlice';
 
-export default function RegisterScreen() {
+export default function LoginScreen() {
   const router = useRouter();
+
+  const dispatch = useDispatch();
 
   const {
     handleSubmit,
     register,
-    getValues,
     formState: { errors },
   } = useForm();
-  const submitHandler = async ({ name, email, password }) => {
+  const submitHandler = async ({ email, password }) => {
     try {
-      await axios.post('/api/auth/register', {
-        name,
+      const userFind = await axios.post('/api/auth/login', {
         email,
         password,
       });
-      router.push('/login');
+      dispatch(
+        setUserLoginDetails({
+          name: userFind.data.existingUser.name,
+          email: userFind.data.existingUser.email,
+          isAdmin: userFind.data.existingUser.isAdmin,
+          _id: userFind.data.existingUser._id,
+        })
+      );
+      router.push('/');
     } catch (err) {
       console.log(err);
     }
@@ -33,22 +41,7 @@ export default function RegisterScreen() {
         className="mx-auto max-w-screen-md bg-zinc-400 p-4"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl font-semibold">Create Account</h1>
-        <div className="mb-4">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            className="w-full"
-            id="name"
-            autoFocus
-            {...register('name', {
-              required: 'Please enter name',
-            })}
-          />
-          {errors.name && (
-            <div className="text-red-500">{errors.name.message}</div>
-          )}
-        </div>
+        <h1 className="mb-4 text-xl font-semibold">Login</h1>
 
         <div className="mb-4">
           <label htmlFor="email">Email</label>
@@ -88,35 +81,9 @@ export default function RegisterScreen() {
           )}
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            className="w-full p-2"
-            type="password"
-            id="confirmPassword"
-            {...register('confirmPassword', {
-              required: 'Please enter confirm password',
-              validate: (value) => value === getValues('password'),
-              minLength: {
-                value: 6,
-                message: 'confirm password is more than 5 chars',
-              },
-            })}
-          />
-          {errors.confirmPassword && (
-            <div className="text-red-500 ">
-              {errors.confirmPassword.message}
-            </div>
-          )}
-          {errors.confirmPassword &&
-            errors.confirmPassword.type === 'validate' && (
-              <div className="text-red-500 ">Password do not match</div>
-            )}
-        </div>
-
         <div className="mb-4 ">
           <button className="bg-emerald-600 rounded-lg p-3 hover:bg-emerald-300 transition-all duration-200">
-            Register
+            Login
           </button>
         </div>
       </form>

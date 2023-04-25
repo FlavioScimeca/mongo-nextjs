@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
-import User from './userSchema';
 
 const noteSchema = new mongoose.Schema(
   {
     title: { type: String, require: true },
     description: { type: String, require: true },
-    user: { type: Object, User },
+    user: {
+      email: { type: String, required: true },
+      name: { type: String, required: true },
+      isAdmin: { type: String, required: true },
+      _id: { type: String, required: true },
+    },
   },
   {
     timestamps: true,

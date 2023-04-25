@@ -1,14 +1,14 @@
 ## TODO
 
 - [x] Creare una next-app con TailwindCSS
-- [ ] Usare mongoDB come database
-- [ ] Mostrare nella landing page i prodotti nel DB
+- [x] Mostrare nella landing page i prodotti nel DB
+- [x] Gestire login/register/logout degli utenti con Mongodb
+- [x] Usare Redux come state management
+- [x] Poter aggiungere una Nota
+- [x] Poter eliminare una Nota
 - [ ] Creare una pagina dettaglio per ogni prodotto
-- [ ] Craere un carrello usando come state management Redux
-- [ ] Craere un piccolo form per la spedizione
 
 ## EXTRA
 
 - [ ] Usare Firebase per gli utenti
-- [ ] Usare Stripe per i pagamenti
 - [ ] Deploy con Vercel
