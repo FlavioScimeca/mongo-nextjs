@@ -22,16 +22,28 @@ function Header() {
         _id: '',
       })
     );
+    router.push('/login');
   };
   return (
-    <div className="py-2 px-5 flex justify-between items-center shadow-lg bg-emerald-600">
-      <div className=" cursor-pointer " onClick={() => onClickLogo()}>
+    <div className="py-2 px-5 flex justify-around items-center shadow-lg bg-emerald-600">
+      <div
+        className=" cursor-pointer flex gap-4 items-center"
+        onClick={() => onClickLogo()}
+      >
         <Image
           src="/mongodb_logo.svg"
           alt="mongodb-logo"
           width="50"
           height="50"
         />
+        <div className="text-zinc-700 font-semibold underline">
+          <Link
+            target="blank"
+            href="https://github.com/FlavioScimeca/mongo-nextjs"
+          >
+            Link Repo
+          </Link>
+        </div>
       </div>
       {userDetail._id == '' ? (
         <div>

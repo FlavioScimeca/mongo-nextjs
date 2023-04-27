@@ -22,7 +22,7 @@ export default function PersonalNote() {
       <Header />
 
       {notes.length > 0 ? (
-        <div className="grid grid-cols-2 gap-2 p-3 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2 p-3 md:grid-cols-3 max-w-4xl mx-auto">
           {notes.map((note, idx) => (
             <Card key={idx} note={note} />
           ))}

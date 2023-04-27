@@ -16,7 +16,7 @@ export default function Home() {
       console.log('utente settato');
       setUser(userDetail);
     } else {
-      const getUser = async () => {
+      async () => {
         const userFind = await axios.post('/api/auth/login', {
           email,
         });
@@ -37,14 +37,18 @@ export default function Home() {
     <div>
       <Header />
       {user && user._id !== '' ? (
-        <div className="mt-5">
-          crea note{' '}
-          <Link className="bg-orange-500 p-2 rounded-md" href="/form-create">
-            clicca qui
-          </Link>
-          <div className="mt-9">
+        <div className="mt-5 flex justify-around items-center h-[50vh]">
+          <div>
             <Link
-              className="p-2 bg-yellow-400 rounded-md"
+              className="bg-emerald-500 p-2 rounded-md active:bg-emerald-600"
+              href="/form-create"
+            >
+              Crea Note
+            </Link>
+          </div>
+          <div>
+            <Link
+              className="p-2 bg-yellow-400 rounded-md active:bg-yellow-500"
               href="/personal-note"
             >
               See all notes
@@ -52,7 +56,11 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div>id non presente</div>
+        <div className="text-center py-5">
+          <span className="font-semibold text-2xl text-yellow-400 border-b-2 pb-2 border-yellow-400">
+            Loggati o registrati
+          </span>
+        </div>
       )}
     </div>
   );
